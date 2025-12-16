@@ -38,6 +38,8 @@
 *.cubin
 *.fatbin
 
+datasets/
+results/
 build/
 *.txt
 *.log

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <unordered_map>
 
-#include "graph/graph.h"
+#include "graph.h"
 
 
 Graph::Graph(std::string path, std::unordered_map<uint32_t, uint32_t>& label_map)

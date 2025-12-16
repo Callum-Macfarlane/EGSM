@@ -1,8 +1,8 @@
 #include <cstdint>
 
-#include "utils/types.h"
-#include "utils/globals.h"
-#include "structures/hashed_tries.h"
+#include "types.h"
+#include "globals.h"
+#include "hashed_tries.h"
 
 
 __constant__ HashedTries tries;

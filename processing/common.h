@@ -3,10 +3,10 @@
 
 
 #include <cstdint>
-#include "utils/search.cuh"
-#include "utils/globals.h"
-#include "graph/graph.h"
-#include "processing/plan.h"
+#include "search.cuh"
+#include "globals.h"
+#include "graph.h"
+#include "plan.h"
 
 
 __forceinline__ __device__ void copyUtilsConstantToShared(GraphUtils &s_utils)

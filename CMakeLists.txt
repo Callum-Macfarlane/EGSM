@@ -9,8 +9,13 @@ set(CMAKE_CUDA_STANDARD 17)
 set(CMAKE_CUDA_STANDARD_REQUIRED True)
 set(CMAKE_BUILD_TYPE RELEASE)
 
-include_directories(${PROJECT_SOURCE_DIR})
-include_directories(/usr/local/cuda-11.7/include)
+# include_directories(${PROJECT_SOURCE_DIR})
+# include_directories(/usr/local/cuda-11/include)  # out of date method
+
+find_package(CUDAToolkit REQUIRED)
+# Do not add ${PROJECT_SOURCE_DIR} globally.
+
+
 
 add_library(nd SHARED 
     utils/nucleus/bucket.cpp
@@ -23,6 +28,20 @@ add_library(nd SHARED
 set_target_properties(nd PROPERTIES
     POSITION_INDEPENDENT_CODE ON)
 
+
+# Put Toolkit includes first; then project subdirs (exclude repo root unless you prefer it)
+target_include_directories(nd PRIVATE
+    ${CUDAToolkit_INCLUDE_DIRS}       # toolkit first
+    ${PROJECT_SOURCE_DIR}/utils
+    ${PROJECT_SOURCE_DIR}/graph
+    ${PROJECT_SOURCE_DIR}/processing
+    ${PROJECT_SOURCE_DIR}/structures
+    ${PROJECT_SOURCE_DIR}/execution
+)
+
+
+
+# ----- link (static CUDA library) --
 add_library(link STATIC
     utils/CLI11.hpp utils/config.h
     utils/cuda_helpers.h utils/helpers.h
@@ -51,9 +70,20 @@ add_library(link STATIC
     execution/execution.h execution/execution.cu)
 
 set_target_properties(link PROPERTIES
-    CUDA_ARCHITECTURES "70"
+    # CUDA_ARCHITECTURES "70"
+    CUDA_ARCHITECTURES "89"
     CUDA_SEPARABLE_COMPILATION ON
     POSITION_INDEPENDENT_CODE ON)
+
+# Attach includes per-target, toolkit FIRST:
+target_include_directories(link PRIVATE
+    ${CUDAToolkit_INCLUDE_DIRS}
+    ${PROJECT_SOURCE_DIR}/utils
+    ${PROJECT_SOURCE_DIR}/graph
+    ${PROJECT_SOURCE_DIR}/processing
+    ${PROJECT_SOURCE_DIR}/structures
+    ${PROJECT_SOURCE_DIR}/execution
+)
 
 target_compile_options(link PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:
     --generate-line-info
@@ -70,9 +100,20 @@ add_executable(EGSM
     graph/operations.cpp)
 
 set_target_properties(EGSM PROPERTIES
-    CUDA_ARCHITECTURES "70"
+    # CUDA_ARCHITECTURES "70"
+    CUDA_ARCHITECTURES "89"
     CUDA_SEPARABLE_COMPILATION ON
     POSITION_INDEPENDENT_CODE ON)
+
+target_include_directories(EGSM PRIVATE
+    ${CUDAToolkit_INCLUDE_DIRS}
+    ${PROJECT_SOURCE_DIR}/utils
+    ${PROJECT_SOURCE_DIR}/graph
+    ${PROJECT_SOURCE_DIR}/processing
+    ${PROJECT_SOURCE_DIR}/structures
+    ${PROJECT_SOURCE_DIR}/execution
+)
+
 
 target_compile_options(EGSM PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:
     --generate-line-info

@@ -4,11 +4,11 @@
 
 #include <cstdint>
 
-#include "utils/mem_pool.h"
-#include "graph/graph.h"
-#include "processing/plan.h"
-#include "structures/hashed_tries.h"
-#include "structures/hashed_trie_manager.h"
+#include "mem_pool.h"
+#include "graph.h"
+#include "plan.h"
+#include "hashed_tries.h"
+#include "hashed_trie_manager.h"
 
 
 void copyConfig(

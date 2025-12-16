@@ -5,10 +5,10 @@
 #include <cooperative_groups.h>
 #include <cuda/std/type_traits>
 
-#include "utils/types.h"
-#include "utils/mem_pool.h"
-#include "processing/plan.h"
-#include "processing/common.h"
+#include "types.h"
+#include "mem_pool.h"
+#include "plan.h"
+#include "common.h"
 
 
 __forceinline__ __device__ void set_next_u(

@@ -1,10 +1,10 @@
 #include <cooperative_groups.h>
 
-#include "utils/globals.h"
-#include "utils/search.cuh"
-#include "graph/graph_gpu.h"
-#include "structures/hashed_tries.h"
-#include "structures/hashed_trie_manager.h"
+#include "globals.h"
+#include "search.cuh"
+#include "graph_gpu.h"
+#include "hashed_tries.h"
+#include "hashed_trie_manager.h"
 
 
 __global__ void compareNLF(

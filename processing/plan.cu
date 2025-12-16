@@ -4,11 +4,11 @@
 #include <unordered_set>
 #include <vector>
 
-#include "utils/globals.h"
-#include "utils/helpers.h"
-#include "graph/graph.h"
-#include "utils/nucleus/nd_interface.h"
-#include "processing/plan.h"
+#include "globals.h"
+#include "helpers.h"
+#include "graph.h"
+#include "nucleus/nd_interface.h"
+#include "plan.h"
 
 __constant__ Plan c_plan;
 

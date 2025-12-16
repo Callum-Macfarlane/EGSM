@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include <vector>
-#include "graph/graph.h"
+#include "graph.h"
 #include "nd.h"
 
 struct nd_tree_node {

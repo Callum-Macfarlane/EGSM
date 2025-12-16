@@ -3,9 +3,9 @@
 
 #include <string>
 
-#include "utils/config.h"
-#include "graph/graph.h"
-#include "utils/nucleus/nd_interface.h"
+#include "config.h"
+#include "graph.h"
+#include "nucleus/nd_interface.h"
 
 struct InitialOrder
 {

@@ -3,9 +3,9 @@
 #include <fstream>
 #include <unordered_map>
 
-#include "utils/cuda_helpers.h"
-#include "graph/graph.h"
-#include "graph/graph_gpu.h"
+#include "cuda_helpers.h"
+#include "graph.h"
+#include "graph_gpu.h"
 
 
 GraphGPU::GraphGPU(const Graph& g)

@@ -1,4 +1,4 @@
-#include "utils/nucleus/nd_interface.h"
+#include "nucleus/nd_interface.h"
 
 inline int commons (vector<int>& a, vector<int>& b) {
 	int i = 0, j = 0;

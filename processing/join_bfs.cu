@@ -1,17 +1,17 @@
 #include <cstdint>
 #include <cooperative_groups.h>
 
-#include "utils/config.h"
-#include "utils/cuda_helpers.h"
-#include "utils/types.h"
-#include "utils/globals.h"
-#include "utils/search.cuh"
+#include "config.h"
+#include "cuda_helpers.h"
+#include "types.h"
+#include "globals.h"
+#include "search.cuh"
 
-#include "processing/plan.h"
-#include "structures/hashed_tries.h"
-#include "structures/hashed_trie_manager.h"
-#include "processing/common.h"
-#include "processing/plan.h"
+#include "plan.h"
+#include "hashed_tries.h"
+#include "hashed_trie_manager.h"
+#include "common.h"
+#include "plan.h"
 
 
 __global__ void joinBFSFirstCount(

@@ -6,17 +6,17 @@
 #include <unordered_map>
 #include <cuda_runtime.h>
 
-#include "utils/CLI11.hpp"
-#include "utils/config.h"
-#include "utils/globals.h"
-#include "utils/cuda_helpers.h"
-#include "utils/mem_pool.h"
+#include "CLI11.hpp"
+#include "config.h"
+#include "globals.h"
+#include "cuda_helpers.h"
+#include "mem_pool.h"
 
-#include "graph/graph.h"
-#include "structures/hashed_tries.h"
-#include "structures/hashed_trie_manager.h"
-#include "processing/plan.h"
-#include "execution/execution.h"
+#include "graph.h"
+#include "hashed_tries.h"
+#include "hashed_trie_manager.h"
+#include "plan.h"
+#include "execution.h"
 
 
 int main(int argc, char** argv) {

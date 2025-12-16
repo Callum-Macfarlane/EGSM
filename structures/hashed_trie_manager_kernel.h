@@ -3,9 +3,9 @@
 
 #include <cstdint>
 
-#include "graph/graph.h"
-#include "structures/hashed_tries.h"
-#include "structures/hashed_trie_manager.h"
+#include "graph.h"
+#include "hashed_tries.h"
+#include "hashed_trie_manager.h"
 
 
 __global__ void compareNLF(

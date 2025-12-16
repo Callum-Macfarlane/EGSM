@@ -5,11 +5,11 @@
 #include <random>
 #include <vector>
 
-#include "utils/config.h"
+#include "config.h"
 
-#include "graph/graph.h"
-#include "graph/graph_gpu.h"
-#include "structures/hashed_tries.h"
+#include "graph.h"
+#include "graph_gpu.h"
+#include "hashed_tries.h"
 
 struct HashedTrieManager
 {

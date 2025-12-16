@@ -1,7 +1,7 @@
 #include <cstdint>
 
-#include "graph/graph.h"
-#include "graph/operations.h"
+#include "graph.h"
+#include "operations.h"
 
 
 void computeDegeneracyOrder(

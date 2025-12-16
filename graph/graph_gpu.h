@@ -6,8 +6,8 @@
 #include <unordered_map>
 
 // for pair hash function
-#include "utils/config.h"
-#include "utils/nucleus/nd.h"
+#include "config.h"
+#include "nucleus/nd.h"
 
 
 class GraphGPU

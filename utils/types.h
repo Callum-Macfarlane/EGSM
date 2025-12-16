@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <cub/cub.cuh>
 
-#include "utils/config.h"
+#include "config.h"
 
 
 struct Bucket

@@ -2,15 +2,15 @@
 #include <vector>
 #include <cub/cub.cuh>
 
-#include "utils/cuda_helpers.h"
-#include "utils/types.h"
-#include "utils/globals.h"
-#include "graph/graph.h"
-#include "graph/graph_gpu.h"
-#include "graph/operations.h"
-#include "structures/hashed_tries.h"
-#include "structures/hashed_trie_manager.h"
-#include "structures/hashed_trie_manager_kernel.h"
+#include "cuda_helpers.h"
+#include "types.h"
+#include "globals.h"
+#include "graph.h"
+#include "graph_gpu.h"
+#include "operations.h"
+#include "hashed_tries.h"
+#include "hashed_trie_manager.h"
+#include "hashed_trie_manager_kernel.h"
 
 
 HashedTrieManager::HashedTrieManager(
@@ -92,7 +92,7 @@ HashedTrieManager::HashedTrieManager(
     cudaErrorCheck(cudaMalloc(&flags, sizeof(uint32_t) * NUM_FLAGS * NUM_VQ));
     cudaErrorCheck(cudaDeviceSynchronize());
 
-    compareNLF<<<GRID_DIM, BLOCK_DIM>>>(
+    compareNLF<<<EGSM_GRID_DIM, BLOCK_DIM>>>(
         query_gpu, data, query_nlf, 
         progress, flags, NUM_FLAGS, 
         compacted_vs_temp_, tries.num_candidates_);
@@ -154,7 +154,7 @@ HashedTrieManager::HashedTrieManager(
                 GenerateCs(tries, i, distrib, gen, PRIME);
                 cudaErrorCheck(cudaDeviceSynchronize());
 
-                buildHashKeys<<<GRID_DIM, BLOCK_DIM>>>(
+                buildHashKeys<<<EGSM_GRID_DIM, BLOCK_DIM>>>(
                     compacted_vs_temp_ + MAX_L_FREQ * u,
                     h_compacted_vs_sizes_[i],
                     tries.keys_[0] + h_hash_table_offs_[i],
@@ -199,7 +199,7 @@ HashedTrieManager::HashedTrieManager(
             cudaErrorCheck(cudaMemset(progress, 0u, sizeof(uint32_t) * 3));
             cudaErrorCheck(cudaDeviceSynchronize());
 
-            buildHashValuesCount<<<GRID_DIM, BLOCK_DIM>>>(
+            buildHashValuesCount<<<EGSM_GRID_DIM, BLOCK_DIM>>>(
                 data,
                 flags + NUM_FLAGS * u_other,
                 NUM_FLAGS,
@@ -251,7 +251,7 @@ HashedTrieManager::HashedTrieManager(
             cudaErrorCheck(cudaMemset(progress, 0u, sizeof(uint32_t) * 3));
             cudaErrorCheck(cudaDeviceSynchronize());
 
-            buildHashValuesWrite<<<GRID_DIM, BLOCK_DIM>>>(
+            buildHashValuesWrite<<<EGSM_GRID_DIM, BLOCK_DIM>>>(
                 data,
                 flags + NUM_FLAGS * u_other,
                 NUM_FLAGS,
@@ -345,7 +345,7 @@ void HashedTrieManager::Filter(
                 cudaErrorCheck(cudaMemset(progress, 0u, sizeof(uint32_t)));
                 cudaErrorCheck(cudaDeviceSynchronize());
 
-                semiJoin<<<GRID_DIM, BLOCK_DIM>>>(
+                semiJoin<<<EGSM_GRID_DIM, BLOCK_DIM>>>(
                     key_flags_[0],
                     key_flags_[1],
                     neighbor_flags_[0],
@@ -372,7 +372,7 @@ void HashedTrieManager::Filter(
                 cudaErrorCheck(cudaMemset(progress, 0u, sizeof(uint32_t)));
                 cudaErrorCheck(cudaDeviceSynchronize());
 
-                semiJoin<<<GRID_DIM, BLOCK_DIM>>>(
+                semiJoin<<<EGSM_GRID_DIM, BLOCK_DIM>>>(
                     key_flags_[0],
                     key_flags_[1],
                     neighbor_flags_[0],
@@ -390,7 +390,7 @@ void HashedTrieManager::Filter(
         cudaErrorCheck(cudaMemset(progress, 0u, sizeof(uint32_t)));
         cudaErrorCheck(cudaDeviceSynchronize());
 
-        compactMiddleLevel<<<GRID_DIM, BLOCK_DIM>>>(*this, tries, progress);
+        compactMiddleLevel<<<EGSM_GRID_DIM, BLOCK_DIM>>>(*this, tries, progress);
         cudaErrorCheck(cudaDeviceSynchronize());
         cudaErrorCheck(cudaFree(progress));
     }
@@ -458,7 +458,7 @@ void HashedTrieManager::Filter(
         cudaErrorCheck(cudaFree(d_temp_storage));
     }
     // copy compacted_vs_sizes to host
-    arrayAdd<<<GRID_DIM, BLOCK_DIM>>>(
+    arrayAdd<<<EGSM_GRID_DIM, BLOCK_DIM>>>(
         tries.compacted_vs_sizes_,
         num_selected_out_temp,
         tries.compacted_vs_sizes_,

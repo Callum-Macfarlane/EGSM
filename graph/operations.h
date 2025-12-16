@@ -2,7 +2,7 @@
 #define GRAPH_OPERATIONS_H
 
 #include <cstdint>
-#include "graph/graph.h"
+#include "graph.h"
 
 
 void computeDegeneracyOrder(

@@ -1,15 +1,15 @@
 #include <chrono>
 
-#include "utils/globals.h"
-#include "utils/helpers.h"
-#include "utils/cuda_helpers.h"
-#include "utils/mem_pool.h"
-#include "graph/graph.h"
-#include "processing/plan.h"
-#include "processing/join_bfs.h"
-#include "structures/hashed_tries.h"
-#include "structures/hashed_trie_manager.h"
-#include "processing/join_bfs_dfs.h"
+#include "globals.h"
+#include "helpers.h"
+#include "cuda_helpers.h"
+#include "mem_pool.h"
+#include "graph.h"
+#include "plan.h"
+#include "join_bfs.h"
+#include "hashed_tries.h"
+#include "hashed_trie_manager.h"
+#include "join_bfs_dfs.h"
 
 
 void copyConfig(

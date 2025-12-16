@@ -2,7 +2,7 @@
 #define UTILS_CONFIG_H
 
 
-#define GRID_DIM 1024u
+#define EGSM_GRID_DIM 1024u
 #define BLOCK_DIM 512u
 #define WARP_SIZE 32u
 #define WARP_PER_BLOCK (BLOCK_DIM/WARP_SIZE)

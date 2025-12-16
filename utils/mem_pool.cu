@@ -1,7 +1,7 @@
 #include <cstdint>
 
-#include "utils/cuda_helpers.h"
-#include "utils/mem_pool.h"
+#include "cuda_helpers.h"
+#include "mem_pool.h"
 
 
 __constant__ MemPool C_MEMPOOL;

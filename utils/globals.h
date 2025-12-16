@@ -4,8 +4,8 @@
 
 #include <cstdint>
 
-#include "utils/config.h"
-#include "graph/graph.h"
+#include "config.h"
+#include "graph.h"
 
 
 extern uint32_t NUM_VQ;

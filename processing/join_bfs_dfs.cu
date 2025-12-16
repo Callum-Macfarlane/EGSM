@@ -1,15 +1,15 @@
 
 #include <cooperative_groups.h>
-#include "utils/config.h"
-#include "utils/types.h"
-#include "utils/cuda_helpers.h"
-#include "utils/globals.h"
-#include "utils/mem_pool.h"
-#include "graph/graph.h"
-#include "structures/hashed_tries.h"
-#include "processing/plan.h"
-#include "processing/common.h"
-#include "processing/join_bfs_dfs.h"
+#include "config.h"
+#include "types.h"
+#include "cuda_helpers.h"
+#include "globals.h"
+#include "mem_pool.h"
+#include "graph.h"
+#include "hashed_tries.h"
+#include "plan.h"
+#include "common.h"
+#include "join_bfs_dfs.h"
 
 __global__ void freeMemory(uint32_t *next_ptr)
 {

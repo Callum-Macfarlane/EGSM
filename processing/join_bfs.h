@@ -3,8 +3,8 @@
 
 #include <cstdint>
 
-#include "structures/hashed_trie_manager.h"
-#include "processing/plan.h"
+#include "hashed_trie_manager.h"
+#include "plan.h"
 
 
 void bfsOneLevel(
